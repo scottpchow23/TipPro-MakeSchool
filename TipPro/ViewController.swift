@@ -16,11 +16,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipAmountField: UITextField!
     @IBOutlet weak var totalAmountField: UITextField!
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
-    @IBAction func calculateTip(sender: AnyObject) {
+    @IBAction func calculateTip(_ sender: AnyObject) {
         guard let billAmount = Double(billAmountField.text!) else {
             //show error
             
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         let roundedTipAmount = round(100*tipAmount)/100
         let totalAmount = roundedBillAmount + roundedTipAmount
         
-        if (!billAmountField.editing) {
+        if (!billAmountField.isEditing) {
             billAmountField.text = String(format: "%.2f", roundedBillAmount)
         }
         tipAmountField.text = String(format: "%.2f", roundedTipAmount)
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
 
 
 extension ViewController : UITextFieldDelegate {
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         billAmountField.text = ""
         tipAmountField.text = ""
         totalAmountField.text = ""
