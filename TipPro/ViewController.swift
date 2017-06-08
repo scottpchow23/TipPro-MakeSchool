@@ -54,13 +54,20 @@ class ViewController: UIViewController {
         tipAmountField.text = String(format: "%.2f", roundedTipAmount)
         totalAmountField.text = String(format: "%.2f", totalAmount)
         
-        billAmountField.resignFirstResponder()
+        self.billAmountField.resignFirstResponder()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tapRecognizer)
     }
+    
+    func hideKeyboard() {
+        self.billAmountField.endEditing(true)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
